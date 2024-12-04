@@ -57,4 +57,52 @@ int main()
 	// Function Call
 	selectKcities(n, weights, k);
 }
-// Contributed by Balu Nagar
+// 
+
+
+
+
+#include <iostream>: Includes the input/output library.
+#include <vector>: Includes the vector library for dynamic arrays.
+#include <algorithm>: Includes algorithms like sort.
+using namespace std;: Simplifies access to standard library names.
+bool compare(pair<int, int> &a, pair<int, int> &b): Comparator to sort pairs by ending times.
+return a.second < b.second;: Ensures shops are sorted by their closing times.
+int maxShopsVisited(vector<int> &S, vector<int> &E, int K): Function to calculate the maximum shops visited.
+int N = S.size();: Gets the number of shops.
+vector<pair<int, int>> shops(N);: Creates a vector to store shops' timings as pairs.
+for (int i = 0; i < N; ++i): Iterates over all shops.
+shops[i] = {S[i], E[i]};: Pairs start and end times for each shop.
+sort(shops.begin(), shops.end(), compare);: Sorts shops by their ending times.
+vector<int> endTimes(K, 0);: Initializes the end times for all persons as 0.
+int maxVisited = 0;: Initializes the count of shops visited.
+for (int i = 0; i < N; ++i): Iterates over all sorted shops.
+int personIndex = -1;: Tracks the first available person.
+for (int j = 0; j < K; ++j): Iterates over all persons.
+if (endTimes[j] <= shops[i].first): Checks if a person is free to visit the shop.
+personIndex = j;: Assigns the person to visit the shop.
+break;: Stops further checks once a person is found.
+if (personIndex != -1): If a valid person is found.
+endTimes[personIndex] = shops[i].second;: Updates the end time for the person.
+maxVisited++;: Increments the count of visited shops.
+return maxVisited;: Returns the total number of shops visited.
+int main(): Starts the program execution.
+cout << "Enter the number of shops: ";: Prompts user input for number of shops.
+cin >> N;: Reads the number of shops.
+vector<int> S(N), E(N);: Creates vectors for start and end times.
+cout << "Enter the starting times of the shops: ";: Prompts user input for start times.
+for (int i = 0; i < N; ++i): Iterates over the number of shops.
+cin >> S[i];: Reads start times into the vector.
+cout << "Enter the ending times of the shops: ";: Prompts user input for end times.
+cin >> E[i];: Reads end times into the vector.
+cout << "Enter the number of persons: ";: Prompts user input for number of persons.
+cin >> K;: Reads the number of persons.
+int result = maxShopsVisited(S, E, K);: Calculates the maximum shops visited.
+cout << "Maximum number of shops visited: " << result << endl;: Outputs the result.
+return 0;: Ends the program.
+
+
+
+
+
+
