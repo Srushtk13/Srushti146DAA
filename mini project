@@ -106,3 +106,27 @@ return 0;: Ends the program.
 
 
 
+
+1. `#include <iostream>`: Includes the library for input/output.  
+2. `#include <vector>`: Includes the library for dynamic arrays.  
+3. `using namespace std;`: Allows simpler usage of standard library components.  
+4. `int maxProfit(const vector<int> &prices)`: Declares a function to calculate maximum profit.  
+5. `int n = prices.size();`: Gets the number of days from the size of the prices vector.  
+6. `int profit = 0, currentDay = n - 1;`: Initializes profit to 0 and sets currentDay to the last day.  
+7. `while (currentDay > 0)`: Loops until all days are checked.  
+8. `int day = currentDay - 1;`: Starts comparison from the previous day of currentDay.  
+9. `while (day >= 0 && (prices[currentDay] > prices[day]))`: Finds days where buying is profitable.  
+10. `profit += (prices[currentDay] - prices[day]);`: Adds profit from the difference in prices.  
+11. `day--;`: Moves to the previous day.  
+12. `currentDay = day;`: Updates currentDay to the last day considered for buying.  
+13. `return profit;`: Returns the total calculated profit.  
+14. `int main()`: Main function where program execution starts.  
+15. `int N;`: Declares the number of days.  
+16. `cout << "Enter the number of days: ";`: Prompts user input for the number of days.  
+17. `cin >> N;`: Reads the number of days.  
+18. `vector<int> prices(N);`: Creates a vector to store stock prices for each day.  
+19. `cout << "Enter the stock prices: ";`: Prompts user input for stock prices.  
+20. `for (int i = 0; i < N; i++)`: Loops to read stock prices.  
+21. `cin >> prices[i];`: Reads stock price for day `i`.  
+22. `cout << "Maximum profit: " << maxProfit(prices) << endl;`: Outputs the maximum profit.  
+23. `return 0;`: Ends the program.
