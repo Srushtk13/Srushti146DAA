@@ -130,3 +130,50 @@ return 0;: Ends the program.
 21. `cin >> prices[i];`: Reads stock price for day `i`.  
 22. `cout << "Maximum profit: " << maxProfit(prices) << endl;`: Outputs the maximum profit.  
 23. `return 0;`: Ends the program.
+
+
+
+#include <iostream> - Includes the header file for input-output stream operations.
+#include <vector> - Includes the header for using vectors.
+using namespace std; - Uses the standard namespace to avoid prefixing std::.
+void printCombinations(const vector<vector<int>>& combinations, int sum) - Function to print all combinations that make up the sum.
+cout << "Combinations to make sum " << sum << " are:" << endl; - Prints the message before displaying the combinations.
+for (const auto& combination : combinations) - Loops through all the combinations and prints each one.
+void findCombinations(int sum, const vector<int>& coins, vector<int>& combination, vector<vector<int>>& combinations, int index) - Function to find all the combinations that sum up to the given sum.
+if (sum == 0) - If the sum reaches zero, the current combination is valid and pushed to the result.
+if (sum < 0 || index >= coins.size()) - Returns when the sum becomes negative or if all coin types are exhausted.
+combination.push_back(coins[index]); - Adds the current coin to the combination and recurses to reduce the sum.
+combination.pop_back(); - Removes the last added coin before moving to the next coin type.
+int coinChange(const vector<int>& coins, int sum) - Main function to calculate the number of ways to form the sum using dynamic programming.
+vector<int> dp(sum + 1, 0); - Initializes a dynamic programming array to store the number of ways to make each sum from 0 to sum.
+vector<vector<int>> combinations; - A vector to store the valid combinations of coins.
+vector<int> combination; - A temporary vector to store the current combination.
+dp[0] = 1; - Initializes the base case, one way to make a sum of 0 (by using no coins).
+for (int coin : coins) - Loops through each coin type.
+for (int j = coin; j <= sum; j++) - Loops through all sums starting from the coin value to the target sum.
+dp[j] += dp[j - coin]; - Updates the number of ways to make the sum j using the current coin.
+findCombinations(sum, coins, combination, combinations, 0); - Calls the function to find all possible combinations for the given sum.
+printCombinations(combinations, sum); - Prints all the combinations found.
+return dp[sum]; - Returns the number of ways to make the target sum.
+int main() - The main function to take user input and output the result.
+cout << "Enter the number of different coins: "; - Prompts the user to enter the number of different coin denominations.
+cin >> N; - Takes the number of coin denominations as input.
+vector<int> coins(N); - Initializes a vector to store the coin values.
+cout << "Enter the coin values: "; - Prompts the user to enter the coin values.
+for (int i = 0; i < N; i++) { cin >> coins[i]; } - Loops to input each coin value into the vector.
+cout << "Enter the sum to be made: "; - Prompts the user to input the target sum.
+cin >> sum; - Takes the target sum as input.
+int ways = coinChange(coins, sum); - Calls the coinChange function to calculate the number of ways to make the sum.
+cout << "Number of ways to make sum " << sum << " is: " << ways << endl; - Outputs the result to the user.
+return 0; - Ends the main function and exits the program.
+
+
+
+
+
+
+
+
+
+
+
